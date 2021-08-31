@@ -54,7 +54,7 @@ https://www.youtube.com/watch?v=ku6aw5n_a9Q&list=PLUDwpEzHYYLvMLbma_Rp-6jrrpxkeH
 
 
 
-# In the Jenkins GUI
+# In the Jenkins GUI - To Execute commands in Wondows  #
 
 Create New Freestyle JOB 
 
@@ -75,4 +75,54 @@ Create New Freestyle JOB
   
 Apply and Save
 
+
+
+
+
+
+# In the Jenkins GUI - To Execute commands from Git HUb  #
+
+First push the code into GitHub
+
+git init
+git status
+git add ApiAutomation.robot
+git add help_robot_tcs.txt
+git add rf_userdefined_keywords.py
+git add json_file.json
+git status
+git commit -m "Test github integration with jenkins"
+
+Create Repository - "RobotFrameworkTCs" in GitHub
+
+git remote add origin git@github.com:NaveeN-Git-Hub/RobotFrameworkTCs.git
+git push -u origin master
+
+
+
+Then Create New Freestyle JOB in Jenkins GUI
+
+-- Source Code Management
+   Git
+   
+   -- Repository URL
+      https://github.com/NaveeN-Git-Hub/RobotFrameworkTCs.git
+   -- Add Credentials
+   
+-- Branches to build
+   */master
+   
+-- Build Triggers
+   Select "Build periodically"
+   */5 * * * * means every 5 minutes
+
+-- Execute Windows Batch command
+   robot --outputdir my_robot_results ApiAutomation.robot
+   exit 0
+
+-- Post-build Actions
+   Select "Publish Robot Framework test results"
+   Directory of Robot output: my_robot_results
+  
+Apply and Save
          
