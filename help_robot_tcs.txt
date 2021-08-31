@@ -1,0 +1,78 @@
+# Instal Java and Jenkins
+Download 'jdk-11.0.12_windows-x64_bin.exe'
+Install and give path in env 
+Download jenkins.war
+Go to jenkins.war path and execute the below command
+java -jar jenkins.war --httpPort=9191
+open web using 'http://localhost:9191/'
+and setup the password
+
+admin/admin
+
+
+Run Specific Testcases using 
+robot --test TC_003_LOAD_AND_VALIDATE_JSON_FILE ApiAutomation.robot
+
+
+
+
+
+# TC_003_LOAD_AND_VALIDATE_JSON_FILE
+-- Reference 
+json_file.json
+
+{
+	"firstName": "John",
+	"lastName": "doe",
+	"age": 26,
+	"address": {
+		"streetAddress": "naist street",
+		"city": "Nara",
+		"postalCode": "630-0192"
+	},
+	"phoneNumbers": [
+		{
+			"type": "iPhone",
+			"number": "0123-4567-8888"
+		},
+		{
+			"type": "home",
+			"number": "0123-4567-8910"
+		}
+	]
+}
+
+https://jsonpathfinder.com/   ------>  to view the Json in proper format
+http://jsonpath.com/  ------>  To get the xpath 
+
+
+
+
+For TC_003_LOAD_AND_VALIDATE_JSON_FILE and TC_004_VALIDATE_COMPLEX_DATA
+https://www.youtube.com/watch?v=ku6aw5n_a9Q&list=PLUDwpEzHYYLvMLbma_Rp-6jrrpxkeH0VJ&index=6
+
+
+
+
+# In the Jenkins GUI
+
+Create New Freestyle JOB 
+
+-- Source Code Management
+   None
+   
+-- Build Triggers
+   Select "Build periodically"
+   */5 * * * * means every 5 minutes
+
+-- Execute Windows Batch command
+   robot --outputdir my_robot_results ApiAutomation.robot
+   exit 0
+
+-- Post-build Actions
+   Select "Publish Robot Framework test results"
+   Directory of Robot output: my_robot_results
+  
+Apply and Save
+
+         
