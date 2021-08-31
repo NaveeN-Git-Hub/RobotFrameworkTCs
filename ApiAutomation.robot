@@ -47,7 +47,7 @@ TC_003_LOAD_AND_VALIDATE_JSON_FILE
     should be equal    ${address_val[0]}    naist street
     ${mobile_val}    get value from json    ${json_object}    $.phoneNumbers[1].number
     log to console    ${mobile_val[0]}
-    should be equal    ${mobile_val[0]}    0123-4567-8910
+    should be equal    ${mobile_val[0]}    0123-4567-1000
 
 TC_004_VALIDATE_COMPLEX_DATA
     create_session    my_session    ${COMPLEX_BASE_URL}
