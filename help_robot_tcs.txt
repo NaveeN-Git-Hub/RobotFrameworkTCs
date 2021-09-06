@@ -1,4 +1,34 @@
-# Instal Java and Jenkins
+# To Setup Jenkins in Ubuntu  #
+
+-- Install packages
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins
+sudo dpkg --configure -a (if any error)
+sudo apt-get install jenkins
+sudo apt search openjdk
+sudo apt install openjdk-11-jdk
+sudo apt-get update
+sudo apt install openjdk-11-jdk
+java -version
+ 
+-- Configure Jenkins 
+  - Open http://localhost:8080
+  - Get the initial password using "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
+  - And Paste in the GUI
+  - Install Suggested plugins
+  - Change the Port number 8080 TO 9292 in "sudo vim /etc/default/jenkins"
+  - Restart the Server using "sudo /etc/init.d/jenkins restart"
+  
+  - To Start the Jenkins:
+     sudo /etc/init.d/jenkins start
+	 http://localhost:9292
+
+------------
+
+# Setup and Instal Java and Jenkins in Windows  #
+
 Download 'jdk-11.0.12_windows-x64_bin.exe'
 Install and give path in env 
 Download jenkins.war
@@ -8,6 +38,8 @@ open web using 'http://localhost:9191/'
 and setup the password
 
 admin/admin
+
+
 
 
 Run Specific Testcases using 
@@ -54,7 +86,7 @@ https://www.youtube.com/watch?v=ku6aw5n_a9Q&list=PLUDwpEzHYYLvMLbma_Rp-6jrrpxkeH
 
 
 
-# In the Jenkins GUI - To Execute commands in Wondows  #
+# In the Jenkins GUI - To Execute commands in Wondows
 
 Create New Freestyle JOB 
 
@@ -76,11 +108,7 @@ Create New Freestyle JOB
 Apply and Save
 
 
-
-
-
-
-# In the Jenkins GUI - To Execute commands from Git HUb  #
+# In the Jenkins GUI - To Execute commands from Git HUb
 
 First push the code into GitHub
 
@@ -116,6 +144,7 @@ Then Create New Freestyle JOB in Jenkins GUI
    Select "Build periodically"
    */5 * * * * means every 5 minutes
 
+-- Build
 -- Execute Windows Batch command
    robot --outputdir my_robot_results ApiAutomation.robot
    exit 0
